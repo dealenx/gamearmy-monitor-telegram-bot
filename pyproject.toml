@@ -1,21 +1,18 @@
 [tool.poetry]
-name = "gs4u-telegram-bot"
-version = "0.1.0"
-description = ""
+name = "gamearmy-telegram-bot"
+version = "0.2.0"
+description = "Telegram bot for monitoring game servers on gamearmy.ru"
 authors = ["dealenx <dealenx@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.scripts]
-default = "gs4u_telegram_bot.main:run"
+default = "gamearmy_telegram_bot.main:run"
 
 [tool.poetry.dependencies]
 python = "^3.10"
 sqlalchemy = "^2.0.36"
 python-dotenv = "^1.0.1"
-telegram = "^0.0.1"
-pytelegrambotapi = "^4.23.0"
-python-telegram-bot = "21.6"
-aiogram = "^3.14.0"
+requests = "^2.31.0"
 beautifulsoup4 = "^4.12.3"
 
 

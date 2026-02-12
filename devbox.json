@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.0/.schema/devbox.schema.json",
+  "packages": [
+    "python@3.12",
+    "poetry@1.8"
+  ],
+  "shell": {
+    "init_hook": [],
+    "scripts": {
+      "install": ["poetry lock && poetry install"],
+      "start": ["poetry run default"],
+      "dev": ["poetry run python -m gamearmy_telegram_bot.main"]
+    }
+  }
+}
