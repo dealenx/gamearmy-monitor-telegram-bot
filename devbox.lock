@@ -5,71 +5,6 @@
       "last_modified": "2026-02-11T12:16:34Z",
       "resolved": "github:NixOS/nixpkgs/8482c7ded03bae7550f3d69884f1e611e3bd19e8?lastModified=1770812194&narHash=sha256-OH%2BlkaIKAvPXR3nITO7iYZwew2nW9Y7Xxq0yfM%2FUcUU%3D"
     },
-    "poetry@1.8": {
-      "last_modified": "2025-01-07T09:15:50Z",
-      "plugin_version": "0.0.4",
-      "resolved": "github:NixOS/nixpkgs/8c9fd3e564728e90829ee7dbac6edc972971cd0f#poetry",
-      "source": "devbox-search",
-      "version": "1.8.5",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/7byk413j70l3lik0n32siyqakp3g9a0m-python3.12-poetry-1.8.5",
-              "default": true
-            },
-            {
-              "name": "dist",
-              "path": "/nix/store/s21gsbchsrydkbvl7ngjin34n2r19r0m-python3.12-poetry-1.8.5-dist"
-            }
-          ],
-          "store_path": "/nix/store/7byk413j70l3lik0n32siyqakp3g9a0m-python3.12-poetry-1.8.5"
-        },
-        "aarch64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/bkg1mcsppg2cl8wi06aybpqsrbrl5kwc-python3.12-poetry-1.8.5",
-              "default": true
-            },
-            {
-              "name": "dist",
-              "path": "/nix/store/jrrinpjm4pymf1zmd1ij9j7fgxgsmflf-python3.12-poetry-1.8.5-dist"
-            }
-          ],
-          "store_path": "/nix/store/bkg1mcsppg2cl8wi06aybpqsrbrl5kwc-python3.12-poetry-1.8.5"
-        },
-        "x86_64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/vy4rvacd91pim4xk9f745q84lswg5zhp-python3.12-poetry-1.8.5",
-              "default": true
-            },
-            {
-              "name": "dist",
-              "path": "/nix/store/qhl9gjps5ay3y18lyrzzd6bx7c320bsb-python3.12-poetry-1.8.5-dist"
-            }
-          ],
-          "store_path": "/nix/store/vy4rvacd91pim4xk9f745q84lswg5zhp-python3.12-poetry-1.8.5"
-        },
-        "x86_64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/192mhmmnk28371l1yij4i2pjlixvjf8p-python3.12-poetry-1.8.5",
-              "default": true
-            },
-            {
-              "name": "dist",
-              "path": "/nix/store/8gj3h8w0ii2ijdcpbyzah84k94rd15lq-python3.12-poetry-1.8.5-dist"
-            }
-          ],
-          "store_path": "/nix/store/192mhmmnk28371l1yij4i2pjlixvjf8p-python3.12-poetry-1.8.5"
-        }
-      }
-    },
     "python@3.12": {
       "last_modified": "2026-01-23T17:20:52Z",
       "plugin_version": "0.0.4",
@@ -124,6 +59,54 @@
             }
           ],
           "store_path": "/nix/store/by9gvhyjawm7g7gkkgpj28aas6fl8ws7-python3-3.12.12"
+        }
+      }
+    },
+    "uv@latest": {
+      "last_modified": "2026-02-06T12:24:04Z",
+      "resolved": "github:NixOS/nixpkgs/ae67888ff7ef9dff69b3cf0cc0fbfbcd3a722abe#uv",
+      "source": "devbox-search",
+      "version": "0.9.30",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/nbfljnh83rajlxq6c67h7x4z6j684sm1-uv-0.9.30",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/nbfljnh83rajlxq6c67h7x4z6j684sm1-uv-0.9.30"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6mms7wdm4idyii2cxnsv9w58krq5jmzl-uv-0.9.30",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/6mms7wdm4idyii2cxnsv9w58krq5jmzl-uv-0.9.30"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/8d9yfpn4vabzi19mf38kqrfj2173r8v7-uv-0.9.30",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/8d9yfpn4vabzi19mf38kqrfj2173r8v7-uv-0.9.30"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/4lz53nhbgq90zns1a9anmhaxsz2bhqxs-uv-0.9.30",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/4lz53nhbgq90zns1a9anmhaxsz2bhqxs-uv-0.9.30"
         }
       }
     }
