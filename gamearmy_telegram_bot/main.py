@@ -22,7 +22,7 @@ load_dotenv()
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 GAMEARMY_SERVER_ID = os.getenv("GAMEARMY_SERVER_ID")
-SERVER_NAME = os.getenv("SERVER_NAME")
+SERVER_NAME = os.getenv("SERVER_NAME", "Сервер")
 
 
 def is_telegram_configured() -> bool:
