@@ -1,0 +1,18 @@
+services:
+  bot:
+    image: ghcr.io/dealenx/gamearmy-monitor-telegram-bot:latest
+    container_name: gamearmy-bot
+    restart: unless-stopped
+    environment:
+      # ID сервера из URL https://gamearmy.ru/monitoring/209558
+      GAMEARMY_SERVER_ID: "209558"
+      SERVER_NAME: "West UT3"
+      # Оставьте пустыми, чтобы бот только писал в лог
+      TELEGRAM_BOT_TOKEN: ""
+      CHAT_ID: ""
+      DB_FILE_PATH: /data/server_players.db
+    volumes:
+      - data:/data
+
+volumes:
+  data:

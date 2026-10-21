@@ -68,9 +68,22 @@ docker run -d --name gamearmy-bot --restart unless-stopped \
   ghcr.io/dealenx/gamearmy-monitor-telegram-bot:latest
 ```
 
+### Docker Compose / Portainer
+
+```bash
+docker compose up -d
+```
+
+Готовый стек — [`docker-compose.yml`](docker-compose.yml): образ из GHCR (`linux/amd64` и `linux/arm64`),
+данные SQLite в именованном volume `data`, автоперезапуск.
+
+**Portainer:** Stacks → Add stack → Web editor → вставить содержимое `docker-compose.yml`. Параметры
+можно вынести в Environment variables стека и заменить значения на `${GAMEARMY_SERVER_ID}`,
+`${TELEGRAM_BOT_TOKEN}`, `${CHAT_ID}`, `${SERVER_NAME}`.
+
 Готовый образ собирается в GitHub Actions (`.github/workflows/docker.yml`) и публикуется в GHCR
 на каждый push в `main` (теги `latest`, `main`, `sha-<commit>`) и на теги `v*` (тег версии).
-Если пакет приватный — `docker login ghcr.io`.
+Пакет публичный — pull без логина; если снова сделаете приватным, нужен `docker login ghcr.io`.
 
 ## Как это работает
 
