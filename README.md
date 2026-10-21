@@ -57,6 +57,21 @@ devbox run start
 uv run gamearmy-bot
 ```
 
+### С Docker
+
+```bash
+docker run -d --name gamearmy-bot --restart unless-stopped \
+  -e GAMEARMY_SERVER_ID=209558 \
+  -e TELEGRAM_BOT_TOKEN=... -e CHAT_ID=... \
+  -e SERVER_NAME="West UT3" -e DB_FILE_PATH=/data/server_players.db \
+  -v gamearmy-data:/data \
+  ghcr.io/dealenx/gamearmy-monitor-telegram-bot:latest
+```
+
+Готовый образ собирается в GitHub Actions (`.github/workflows/docker.yml`) и публикуется в GHCR
+на каждый push в `main` (теги `latest`, `main`, `sha-<commit>`) и на теги `v*` (тег версии).
+Если пакет приватный — `docker login ghcr.io`.
+
 ## Как это работает
 
 1. Бот каждые 20 секунд проверяет список игроков на сервере через gamearmy.ru
