@@ -74,12 +74,41 @@ docker run -d --name gamearmy-bot --restart unless-stopped \
 docker compose up -d
 ```
 
-Готовый стек — [`docker-compose.yml`](docker-compose.yml): образ из GHCR (`linux/amd64` и `linux/arm64`),
-данные SQLite в именованном volume `data`, автоперезапуск.
+Вставить в **Portainer → Stacks → Add stack → Web editor** (то же, что
+[`docker-compose.yml`](docker-compose.yml)):
 
-**Portainer:** Stacks → Add stack → Web editor → вставить содержимое `docker-compose.yml`. Параметры
-можно вынести в Environment variables стека и заменить значения на `${GAMEARMY_SERVER_ID}`,
-`${TELEGRAM_BOT_TOKEN}`, `${CHAT_ID}`, `${SERVER_NAME}`.
+```yaml
+services:
+  bot:
+    image: ghcr.io/dealenx/gamearmy-monitor-telegram-bot:latest
+    container_name: gamearmy-bot
+    restart: unless-stopped
+    environment:
+      # ID сервера из URL https://gamearmy.ru/monitoring/209558
+      GAMEARMY_SERVER_ID: "${GAMEARMY_SERVER_ID:-209558}"
+      SERVER_NAME: "${SERVER_NAME:-West UT3}"
+      # Пустые значения = бот только пишет в лог
+      TELEGRAM_BOT_TOKEN: "${TELEGRAM_BOT_TOKEN:-}"
+      CHAT_ID: "${CHAT_ID:-}"
+      DB_FILE_PATH: /data/server_players.db
+    volumes:
+      - data:/data
+
+volumes:
+  data:
+```
+
+В Portainer ниже, в **Environment variables** стека, задать:
+
+```env
+GAMEARMY_SERVER_ID=209558
+SERVER_NAME=West UT3
+TELEGRAM_BOT_TOKEN=123456:AA...
+CHAT_ID=-1001234567890
+```
+
+Без этих переменных запустятся значения по умолчанию (server `209558`, Telegram отключён).
+Образ из GHCR (`linux/amd64` и `linux/arm64`), SQLite в именованном volume `data`, автоперезапуск.
 
 Готовый образ собирается в GitHub Actions (`.github/workflows/docker.yml`) и публикуется в GHCR
 на каждый push в `main` (теги `latest`, `main`, `sha-<commit>`) и на теги `v*` (тег версии).
