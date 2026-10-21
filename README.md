@@ -98,7 +98,15 @@ volumes:
   data:
 ```
 
-В Portainer ниже, в **Environment variables** стека, задать:
+В Portainer при создании стека есть два места для переменных:
+
+1. **Environment variables** — ввести по одной вручную, либо кнопка **Load variables from .env file** и
+   загрузить файл. Значения подставляются в `${...}` в compose.
+2. **`env_file: [stack.env]`** в сервисе — тогда в Portainer загруженный `.env` монтируется как
+   `stack.env`, и переменные попадают в контейнер целиком, без `${...}` в compose
+   (не работает на Docker Swarm).
+
+Значения для этого стека:
 
 ```env
 GAMEARMY_SERVER_ID=209558
@@ -108,6 +116,8 @@ CHAT_ID=-1001234567890
 ```
 
 Без этих переменных запустятся значения по умолчанию (server `209558`, Telegram отключён).
+Если задавать переменные вообще не хочется — можно захардкодить значения прямо в блок `environment`
+и не создавать `.env`. Порядок: `docker compose up -d` — подхватит `.env` из корня репозитория.
 Образ из GHCR (`linux/amd64` и `linux/arm64`), SQLite в именованном volume `data`, автоперезапуск.
 
 Готовый образ собирается в GitHub Actions (`.github/workflows/docker.yml`) и публикуется в GHCR
