@@ -1,9 +1,6 @@
 import os
 import time
 import logging
-import urllib.parse
-from datetime import datetime
-
 import requests
 from dotenv import load_dotenv
 
@@ -21,6 +18,8 @@ load_dotenv()
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
+# Зеркало/local Bot API server: подменяет https://api.telegram.org
+TELEGRAM_API_URL = (os.getenv("TELEGRAM_API_URL") or "https://api.telegram.org").rstrip("/")
 GAMEARMY_SERVER_ID = os.getenv("GAMEARMY_SERVER_ID")
 SERVER_NAME = os.getenv("SERVER_NAME", "Сервер")
 
@@ -45,12 +44,12 @@ def send_telegram_message(message: str) -> bool:
         return False
     
     try:
-        url = 'https://api.telegram.org/bot{}/sendMessage?chat_id={}&text={}'.format(
-            TELEGRAM_BOT_TOKEN, 
-            CHAT_ID, 
-            urllib.parse.quote_plus(message)
+        url = f"{TELEGRAM_API_URL}/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+        response = requests.post(
+            url,
+            params={"chat_id": CHAT_ID, "text": message},
+            timeout=10,
         )
-        response = requests.get(url, timeout=10)
         response.raise_for_status()
         return True
     except requests.RequestException as e:

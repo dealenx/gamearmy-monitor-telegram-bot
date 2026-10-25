@@ -10,6 +10,8 @@ services:
       # Пустые значения = бот только пишет в лог
       TELEGRAM_BOT_TOKEN: "${TELEGRAM_BOT_TOKEN:-}"
       CHAT_ID: "${CHAT_ID:-}"
+      # Зеркало Telegram API (например http://telegram-bot-api:8081); по умолчанию официальный
+      TELEGRAM_API_URL: "${TELEGRAM_API_URL:-https://api.telegram.org}"
       DB_FILE_PATH: /data/server_players.db
     volumes:
       - data:/data

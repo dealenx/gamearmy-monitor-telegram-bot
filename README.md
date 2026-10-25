@@ -35,6 +35,8 @@ GAMEARMY_SERVER_ID=209558
 # Telegram Bot (оставить пустыми для работы без отправки в Telegram)
 TELEGRAM_BOT_TOKEN=your_bot_token
 CHAT_ID=your_chat_id
+# Адрес Telegram Bot API (для зеркала/local Bot API server); пусто = https://api.telegram.org
+TELEGRAM_API_URL=
 
 # База данных SQLite
 DB_FILE_PATH=server_players.db
@@ -63,6 +65,7 @@ uv run gamearmy-bot
 docker run -d --name gamearmy-bot --restart unless-stopped \
   -e GAMEARMY_SERVER_ID=209558 \
   -e TELEGRAM_BOT_TOKEN=... -e CHAT_ID=... \
+  -e TELEGRAM_API_URL=https://api.telegram.org \
   -e SERVER_NAME="West UT3" -e DB_FILE_PATH=/data/server_players.db \
   -v gamearmy-data:/data \
   ghcr.io/dealenx/gamearmy-monitor-telegram-bot:latest
@@ -90,6 +93,8 @@ services:
       # Пустые значения = бот только пишет в лог
       TELEGRAM_BOT_TOKEN: "${TELEGRAM_BOT_TOKEN:-}"
       CHAT_ID: "${CHAT_ID:-}"
+      # Зеркало Telegram API (например http://telegram-bot-api:8081); по умолчанию официальный
+      TELEGRAM_API_URL: "${TELEGRAM_API_URL:-https://api.telegram.org}"
       DB_FILE_PATH: /data/server_players.db
     volumes:
       - data:/data
@@ -113,7 +118,13 @@ GAMEARMY_SERVER_ID=209558
 SERVER_NAME=West UT3
 TELEGRAM_BOT_TOKEN=123456:AA...
 CHAT_ID=-1001234567890
+# Необязательно: зеркало Bot API вместо https://api.telegram.org
+TELEGRAM_API_URL=
 ```
+
+`TELEGRAM_API_URL` указывает альтернативный Bot API (например зеркало или
+[local Bot API server](https://github.com/tdlib/telegram-bot-api)): бот обращается к
+`{TELEGRAM_API_URL}/bot<token>/sendMessage`. Пустое значение = официальный `https://api.telegram.org`.
 
 Без этих переменных запустятся значения по умолчанию (server `209558`, Telegram отключён).
 Если задавать переменные вообще не хочется — можно захардкодить значения прямо в блок `environment`
